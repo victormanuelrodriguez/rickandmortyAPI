@@ -1,0 +1,7 @@
+1) Obtener un listado de personajes con género masculino y mostrarlos por consola
+*Código:
+	https://rickandmortyapi.com/api/character/?gender=Male
+*JSON resultante Localización: json_respuestas -> 1.txt
+	En el JSON se ve que dentro de result se encuentra el genero masculino (male)
+
+
