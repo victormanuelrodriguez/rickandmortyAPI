@@ -4,4 +4,16 @@
 *JSON resultante Localización: json_respuestas -> 1.txt
 	En el JSON se ve que dentro de result se encuentra el genero masculino (male)
 
+2) Obtener el listado de personajes que hayan aparecido en el episodio 5.
+*Código:
+	https://rickandmortyapi.com/api/episode/5
+*JSON resultante Localización: json_respuestas -> 2.txt
+	En el JSON se ve que dentro de characters se encuentra la lista de personajes salidos en el capítulo 5
+
+3) Obtener listado de sitios que pertenecen a una dimensión desconocida.
+*Código:
+	https://rickandmortyapi.com/api/location/?dimension=unknown
+*JSON resultante Localización: json_respuestas -> 3.txt
+	En el JSON se ve que dentro de dimension=unknown
+
 
