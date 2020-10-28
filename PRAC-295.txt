@@ -16,4 +16,10 @@
 *JSON resultante Localización: json_respuestas -> 3.txt
 	En el JSON se ve que dentro de dimension=unknown
 
+4) Obtener listado de personajes nacidos en la Tierra.
+*Código:
+	https://rickandmortyapi.com/api/character/?origin=earth
+*JSON resultante Localización: json_respuestas -> 4.txt
+	En el JSON se ve que dentro de origin -> name = Earth
+
 
