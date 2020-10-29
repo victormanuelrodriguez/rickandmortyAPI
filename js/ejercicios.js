@@ -23,7 +23,27 @@ async function ejercicio5 () {
         });
     });
 }
-
+/**
+ * Con el listado obtenido de personas del episodio 5, muestra los humanos
+ */
+async function ejercicio6() {
+    const url = 'https://rickandmortyapi.com/api/character/?species=human';
+    const method = 'GET';
+    var result = [];
+    await connect(method, url)
+        .then(respuesta => {
+            var res = JSON.parse(respuesta);
+            result = res.results;
+        })
+        .catch(error => console.log(error))
+    result.forEach(e => {
+        e.episode.forEach(a => {
+            if (a.includes('/5')) {
+                console.log(e);
+            }
+        });
+    });
+}
 
 async function connect(method,url){
     return new Promise(function (resolve, reject) {
@@ -49,4 +69,4 @@ async function connect(method,url){
     });
 }
 
-ejercicio5()
+ejercicio6()

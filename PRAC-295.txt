@@ -22,4 +22,6 @@
 *JSON resultante Localización: json_respuestas -> 4.txt
 	En el JSON se ve que dentro de origin -> name = Earth
 
+A partir del ejercicio 5 se encuentra en la carperta de js. Debe usar node ejercicios.js
+
 
