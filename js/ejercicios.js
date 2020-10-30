@@ -107,7 +107,7 @@ async function ejercicio6() {
     console.log("Personajes:", characterCap.length);
 }
 /**
- * Muestra un listado de sitios que aparecen en el episodio 20
+ * Muestra un listado de lugares de origen de los personajes  que aparecen en el episodio 20.
  * Envía una petición a la API para recoger a todos los personajes.
  * Espera a una promesa y Obtiene los lugares
  */
@@ -123,7 +123,7 @@ async function ejercicio7() {
         .catch(error => console.log(error));
     var character = [];
     for (let index = 0; index < result.length; index++) {
-        console.log(result[index]);
+        // console.log(result[index]);
         await connect(method, result[index]).then(
             res => {
                 var respuesta = JSON.parse(res);
@@ -132,11 +132,11 @@ async function ejercicio7() {
             }
         ).catch(error => console.log(error))
     }
-    var location = [];
+    var origen = [];
     character.forEach((e) => {
-        location.push(e.location);
+        origen.push(e.origin);
     });
-    console.log(location);
+    console.log("La lista de los lugares origen de los personajes es: ",origen);
 }
 /**
  * Del listado de sitios obtenidos del episodio 20, 
@@ -169,7 +169,13 @@ async function ejercicio8() {
     });
     console.log(location);
 }
-
+/**
+ * 
+ * @param {Recibe el método para la petición: Get,Post,etc} method 
+ * @param {Recibe una url para la petición} url 
+ * Declaro var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+ * Y la llamo con xhr versión XMLHttpRequest
+ */
 async function connect(method,url){
     return new Promise(function (resolve, reject) {
         var xhr = new XMLHttpRequest();
