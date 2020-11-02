@@ -1,5 +1,6 @@
 
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+const prompt = require('prompt');
 const fs = require('fs');
 /**
  * Obtener listado de humanos que aparecen en el episodio 25
@@ -53,6 +54,7 @@ async function ejercicio5 () {
     }); */
     console.log(characterCap);
     console.log("Personajes:", characterCap.length);
+    init();
 }
 /**
  * Con el listado obtenido de personas del episodio 5, muestra los humanos
@@ -105,6 +107,7 @@ async function ejercicio6() {
     }); */
     console.log(characterCap);
     console.log("Personajes:", characterCap.length);
+    init();
 }
 /**
  * Muestra un listado de lugares de origen de los personajes  que aparecen en el episodio 20.
@@ -137,14 +140,14 @@ async function ejercicio7() {
         origen.push(e.origin);
     });
     console.log("La lista de los lugares origen de los personajes es: ",origen);
+    init();
 }
 /**
- * Del listado de sitios obtenidos del episodio 20, 
- * muestra los siguientes datos: Lugares de origen de cada personaje y 
- * listado de episodios en los que aparecen las distintos sitios que aparecen en este episodio.
+ * Del listado de sitios obtenidos del episodio 30, 
+ * Personajes originales de este lugar, su imagen y el listado de episodios donde aparecen.
  */
 async function ejercicio8() {
-    const url = 'https://rickandmortyapi.com/api/episode/20';
+    const url = 'https://rickandmortyapi.com/api/episode/30';
     const method = 'GET';
     var result = [];
     await connect(method, url)
@@ -159,15 +162,21 @@ async function ejercicio8() {
             res => {
                 var respuesta = JSON.parse(res);
                 character.push(respuesta);
-
             }
         ).catch(error => console.log(error))
     }
-    var location = [];
-    character.forEach((e, i = 0) => {
-        location.push(e.location);
+    console.log(character);
+    var listCharacter = [];
+    character.forEach((e) => {
+        listCharacter.push({
+            name : e.name,
+            image : e.image,
+            origin : e.origin,
+            episode : e.episode
+        });
     });
-    console.log(location);
+    console.log(listCharacter); 
+    init();
 }
 /**
  * 
@@ -200,4 +209,47 @@ async function connect(method,url){
     });
 }
 
-ejercicio7()
+async function init() {
+    prompt.start();
+    var n = 0;
+    console.log('Por favor introduzca un valor entre 5 y 8');
+    console.log('Nota: Introduzca 0 para salir')
+    await prompt.get(['tarea'], function (err, result) {
+        if (err) { return onErr(err); }
+        n = parseInt(result.tarea);
+        if(result.tarea === 'NaN'){
+            console.log('Error, debe introducir un número.')
+            init();
+        }
+       
+        switch (n) {
+            case 5:
+                ejercicio5();
+                break;
+            case 6:
+                ejercicio6();
+                break;
+            case 7:
+                ejercicio7();
+                break;
+            case 8:
+                ejercicio8();
+                break;
+            case 0:
+                console.log('saliendo');
+                prompt.stop();
+                break;
+            default:
+                console.log('Error, Debe usar un numero y que esté entre 5 y 8');
+                init();
+                break;
+        }
+       
+    });
+    
+    function onErr(err) {
+        console.log(err);
+        return 1;
+    }
+}
+init()
